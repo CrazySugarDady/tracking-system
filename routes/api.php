@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->get('/order', function (Request $request) {
     return $request->order();
 });
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+});
