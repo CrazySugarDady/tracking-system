@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>刪除用戶</title>
+    </head>
+    <body>
+        <center>
+        <form avtion="del-user" method="post">
+            <?php echo csrf_field(); ?>
+            <h2>刪除用戶</h2>
+        <font size="4">
+        <table class="table border border-black" width="300">
+                <td class="border border-black" align='center' valign="middle">序號</td>
+                <td class="border border-black" align='center' valign="middle">帳號</td>
+                <td class="border border-black" align='center' valign="middle">密碼</td>
+            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <tr class="border border-black">
+                <td class="border border-black" align='center' valign="middle"><?php echo e($user->user_id); ?></td>
+                <td class="border border-black" align='center' valign="middle"><?php echo e($user->username); ?></td>
+                <td class="border border-black" align='center' valign="middle"><?php echo e($user->password); ?></td>
+                </td>
+            </tr>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+           </table><p>
+            是否確定刪除此用戶？<p>
+            <input type="submit" name="submit" value="刪除">
+            <?php if(Session::get('username') != 'root'): ?>
+            <input type="button" value="回大廳" onclick="location.href='http://127.0.0.1:8000/lobby/user'">
+            <?php else: ?>
+            <input type="button" value="回大廳" onclick="location.href='http://127.0.0.1:8000/lobby/root'">
+            <?php endif; ?>
+        </font>
+            <?php echo $__env->make('flash-message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        </form>
+        </center>
+    </body>
+</html><?php /**PATH /Users/crazyandy/test/test/resources/views/del-user.blade.php ENDPATH**/ ?>
