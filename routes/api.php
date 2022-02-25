@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserApi;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,3 +25,5 @@ Route::middleware('auth:api')->get('/order', function (Request $request) {
 });
 
 
+Route::put('/login/changePassword', [UserApi::class,'loginApi']);
+Route::post('/login/register', [UserApi::class,'registerUserApi']);
